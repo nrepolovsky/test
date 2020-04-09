@@ -18,13 +18,12 @@ GRAPH FILE retail_samples/wf_retail_lite
 SUM WF_RETAIL_LITE.WF_RETAIL_SALES.REVENUE_US
 BY HIGHEST WF_RETAIL_LITE.WF_RETAIL_GEOGRAPHY_STORE.COUNTRY_NAME
 BY WF_RETAIL_LITE.WF_RETAIL_PRODUCT.PRODUCT_CATEGORY
-BY WF_RETAIL_LITE.WF_RETAIL_TIME_SALES.TIME_QTR
+BY WF_RETAIL_LITE.WF_RETAIL_TIME_SALES.TIME_QTR AS 'Qarterly Sale'
 WHERE WF_RETAIL_LITE.WF_RETAIL_GEOGRAPHY_STORE.COUNTRY_NAME EQ 'United States' OR 'United Kingdom' OR 'Spain' OR 'France' OR 'Germany' OR 'Italy';
-WHERE WF_RETAIL_LITE.WF_RETAIL_PRODUCT.PRODUCT_CATEGORY EQ &PRODUCT_CATEGORY.(OR(FIND WF_RETAIL_LITE.WF_RETAIL_PRODUCT.PRODUCT_CATEGORY IN retail_samples/WF_RETAIL_LITE |FORMAT=A40V)).Product Category:.;
+WHERE WF_RETAIL_LITE.WF_RETAIL_PRODUCT.PRODUCT_CATEGORY EQ &PRODUCT_CATEGORY.(OR(FIND WF_RETAIL_LITE.WF_RETAIL_PRODUCT.PRODUCT_CATEGORY IN RETAIL_SAMPLES/WF_RETAIL_LITE |FORMAT=A40V)).Product Category:.;
 ON GRAPH PCHOLD FORMAT JSCHART
 ON GRAPH SET VZERO OFF
 ON GRAPH SET GRWIDTH 1
-ON GRAPH SET AUTOFIT ON
 ON GRAPH SET UNITS &WF_STYLE_UNITS
 ON GRAPH SET HAXIS &WF_STYLE_WIDTH
 ON GRAPH SET VAXIS &WF_STYLE_HEIGHT
@@ -61,52 +60,7 @@ setDisplay(getLegendArea(),true);
         "scroll": false
     }
 },
-"pieProperties": {
-    "holeSize": "0%"
-},
 "series":     [
-        {
-            "dataLabels": {
-                "visible": false,
-                "font": "10pt Sans-Serif"
-            },
-            "series": "all"
-        }, 
-        {
-            "dataLabels": {
-                "visible": false,
-                "font": "10pt Sans-Serif"
-            },
-            "series": "all"
-        }, 
-        {
-            "dataLabels": {
-                "visible": false,
-                "font": "10pt Sans-Serif"
-            },
-            "series": "all"
-        }, 
-        {
-            "dataLabels": {
-                "visible": false,
-                "font": "10pt Sans-Serif"
-            },
-            "series": "all"
-        }, 
-        {
-            "dataLabels": {
-                "visible": false,
-                "font": "10pt Sans-Serif"
-            },
-            "series": "all"
-        }, 
-        {
-            "dataLabels": {
-                "visible": false,
-                "font": "10pt Sans-Serif"
-            },
-            "series": "all"
-        }, 
         {
             "dataLabels": {
                 "visible": false,
@@ -115,6 +69,9 @@ setDisplay(getLegendArea(),true);
             "series": "all"
         }
     ],
+"pieProperties": {
+    "holeSize": "0%"
+},
 "blaProperties": {
     "splitY": true
 },
